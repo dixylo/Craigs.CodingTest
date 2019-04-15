@@ -3,6 +3,7 @@ import asteroid from '../assets/asteroid.png';
 import './Neo.css';
 
 const DIAMETER_SCALE_RANGE = [2, 5];
+const DISTANCE_SCALE_RANGE = [20, 40];
 
 function handleScale (original_value, original_range, scale_range) {
   const omin = original_range[0];
@@ -12,27 +13,33 @@ function handleScale (original_value, original_range, scale_range) {
   return smin + (original_value - omin) * (smax - smin) / (omax - omin);
 };
 
-export const Neo = ({ index, data, diameterRange }) => {
+export const Neo = ({ index, data, count, diameterRange, distanceRange }) => {
   const {
     name,
     estimated_diameter: {
       meters: {
         estimated_diameter_min, estimated_diameter_max
       }
-    }
+    },
+    close_approach_data
   } = data;
 
   const diameter = (estimated_diameter_min + estimated_diameter_max) / 2;
   const scaled_diameter = handleScale(diameter, diameterRange, DIAMETER_SCALE_RANGE);
-  // console.log(diameterRange)
+
+  const distance = close_approach_data[0].miss_distance.kilometers;
+  const scaled_distance = handleScale(distance, distanceRange, DISTANCE_SCALE_RANGE);
+  const x = scaled_distance * Math.cos(2 * Math.PI / count * index) + 50;
+  const y = scaled_distance * Math.sin(2 * Math.PI / count * index) + 50;
+  
   return (
     <div
       className='neo'
       style={{
         width: `${scaled_diameter}vw`,
         height: `${scaled_diameter}vw`,
-        top: `${index * 10}vh`,
-        left: `${index * 10}vw`
+        left: `${x}vw`,
+        top: `${y}vh`
       }}
     >
       <img className='neoImg' alt={name} src={asteroid} />
