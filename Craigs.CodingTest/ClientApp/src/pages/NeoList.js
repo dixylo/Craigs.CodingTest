@@ -69,7 +69,7 @@ class NeoList extends Component {
   render () {
     return (
       <div className='container'>
-        <p className='date'>Date: {this.state.date}</p>
+        <p className='date'>{this.state.date}</p>
         {this.state.data
           && this.state.data.near_earth_objects[this.state.date]
           .map((neo, i) => {

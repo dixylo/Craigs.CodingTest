@@ -18,6 +18,10 @@
   align-items: baseline;
 }
 
+.asteroidImg {
+  animation: spin 10s linear infinite;
+}
+
 .details {
   position: absolute;
   top: 10vh;

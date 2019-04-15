@@ -6,6 +6,7 @@
 .neoImg {
   width: 100%;
   height: 100%;
+  animation: spin 2s linear infinite;
 }
 
 .neo .tip {
@@ -30,4 +31,9 @@
 
 .neo:hover .tip {
   visibility: visible;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
 }
