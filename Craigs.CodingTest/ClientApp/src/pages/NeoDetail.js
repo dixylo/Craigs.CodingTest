@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import asteroid from '../assets/asteroid.png';
+import skytower from '../assets/skytower.png';
 import { neo } from '../mock/neo';
 import './NeoDetail.css';
+
+const SKY_TOWER_HEIGHT = 328;
+const MAX_HEIGHT_SCALED = 80;
 
 class NeoDetail extends Component {
   state = {
@@ -21,9 +26,50 @@ class NeoDetail extends Component {
     }
   }
 
+  handleScale = () => {
+    if (!this.state.data || !this.state.data.estimated_diameter) return { neoStyle: {}, towerStyle: {} };
+    const {
+      estimated_diameter: {
+        meters: {
+          estimated_diameter_min, estimated_diameter_max
+        }
+      }
+    } = this.state.data;
+    const diameter = Math.round((estimated_diameter_min + estimated_diameter_max) / 2);
+
+    let neoStyle;
+    let towerStyle;
+    if (diameter > SKY_TOWER_HEIGHT) {
+      neoStyle = { width: `${MAX_HEIGHT_SCALED}vh`, height: `${MAX_HEIGHT_SCALED}vh` };
+      towerStyle = { height: `${MAX_HEIGHT_SCALED * SKY_TOWER_HEIGHT / diameter}vh` };
+    } else {
+      neoStyle = {
+        width: `${MAX_HEIGHT_SCALED * diameter / SKY_TOWER_HEIGHT}vh`,
+        height: `${MAX_HEIGHT_SCALED * diameter / SKY_TOWER_HEIGHT}vh`
+      };
+      towerStyle = { height: `${MAX_HEIGHT_SCALED}vh` };
+    }
+
+    return { neoStyle, towerStyle };
+  };
+
   render () {
     return (
       <div className='detail-container'>
+        <div className='img-container'>
+          <img 
+            className='towerImg'
+            alt='sky tower'
+            src={skytower}
+            style={this.handleScale().towerStyle}
+          />
+          <img
+            className='asteroidImg'
+            alt='asteroid'
+            src={asteroid}
+            style={this.handleScale().neoStyle}
+          />
+        </div>
         <div className='details'>
           <p>Did you know?</p>
           <p>
@@ -58,7 +104,7 @@ class NeoDetail extends Component {
             {this.state.data && this.state.data.absolute_magnitude_h} km away,
           </p>
           <p>
-            so no worries for this little buddy.
+            so no worries about this little buddy.
           </p>
           <Link to='/neos'>
             <button className='checkout'>Return</button>

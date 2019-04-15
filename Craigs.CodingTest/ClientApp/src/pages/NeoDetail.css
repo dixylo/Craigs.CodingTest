@@ -9,6 +9,15 @@
   border: 1px solid aliceblue;
 }
 
+.img-container {
+  position: absolute;
+  top: 10vh;
+  right: 50vw;
+  display: flex;
+  justify-content:space-around;
+  align-items: baseline;
+}
+
 .details {
   position: absolute;
   top: 10vh;
@@ -23,5 +32,9 @@
 @media only screen and (max-width: 600px) {
   .details {
     font-size: 14px;
+  }
+
+  .img-container {
+    right: 70
   }
 }
