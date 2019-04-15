@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import asteroid from '../assets/asteroid.png';
 import './Neo.css';
 
@@ -15,6 +16,7 @@ function handleScale (original_value, original_range, scale_range) {
 
 export const Neo = ({ index, data, count, diameterRange, distanceRange }) => {
   const {
+    id,
     name,
     estimated_diameter: {
       meters: {
@@ -42,7 +44,9 @@ export const Neo = ({ index, data, count, diameterRange, distanceRange }) => {
         top: `${y}vh`
       }}
     >
-      <img className='neoImg' alt={name} src={asteroid} />
+      <Link to={`/neo/${id}`}>
+        <img className='neoImg' alt={name} src={asteroid} />
+      </Link>
       <div className={y > 50 ? 'tip above' : 'tip'}>
         <p>Name: {name}</p>
         <p>Diameter: ~{Math.round(diameter)} m</p>
