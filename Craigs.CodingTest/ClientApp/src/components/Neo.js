@@ -43,7 +43,11 @@ export const Neo = ({ index, data, count, diameterRange, distanceRange }) => {
       }}
     >
       <img className='neoImg' alt={name} src={asteroid} />
-      <p>Name: {name}</p>
+      <div className={y > 50 ? 'tip above' : 'tip'}>
+        <p>Name: {name}</p>
+        <p>Diameter: ~{Math.round(diameter)} m</p>
+        <p>Distance: {(distance / 1000000).toFixed(1)} Mkm</p>
+      </div>
     </div>
   );
 }
