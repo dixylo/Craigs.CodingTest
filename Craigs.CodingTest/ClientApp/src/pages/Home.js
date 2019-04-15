@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 class Home extends Component {
@@ -11,7 +12,9 @@ class Home extends Component {
             <p>Everyday, Earth has some buddies around...</p>
             <p>They are called Near-Earth Objects, or NEOs.</p>
             <br />
+            <Link to='/neos'>
               <button className='checkout'>Check out</button>
+            </Link>
             &nbsp;who's hanging out with Earth today!
           </div>          
         </div>
