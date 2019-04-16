@@ -48,9 +48,9 @@ export const Neo = ({ index, data, count, diameterRange, distanceRange }) => {
         <img className='neoImg' alt={name} src={asteroid} />
       </Link>
       <div className={y > 50 ? 'tip above' : 'tip'}>
-        <p>Name: {name}</p>
-        <p>Diameter: ~{Math.round(diameter)} m</p>
-        <p>Distance: {(distance / 1000000).toFixed(1)} Mkm</p>
+        <p><span className='properties'>Name:</span> {name}</p>
+        <p><span className='properties'>Diameter:</span> ~{Math.round(diameter)} m</p>
+        <p><span className='properties'>Distance:</span> {(distance / 1000000).toFixed(1)} Mkm</p>
       </div>
     </div>
   );

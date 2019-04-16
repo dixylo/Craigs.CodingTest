@@ -83,7 +83,7 @@ class NeoDetail extends Component {
             )}~
             {this.state.data && Math.round(
               this.state.data.estimated_diameter.meters.estimated_diameter_max
-            )} meters big,
+            )} meters wide,
             while our sky tower is 328 meters tall.
           </p>
           <p>

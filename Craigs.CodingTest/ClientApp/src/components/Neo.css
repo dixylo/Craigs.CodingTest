@@ -25,6 +25,10 @@
   z-index: 1;
 }
 
+.properties {
+  font-size: 1rem;
+}
+
 .above {
   transform: translate(50px, -230px);
 }

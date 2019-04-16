@@ -86,7 +86,14 @@ class NeoList extends Component {
             );
           }
         )}
-        <div className='earth'><img className='earthImg' alt='earch' src={earth} /></div>
+        <div className='earth'>
+          <img className='earthImg' alt='earch' src={earth} />
+          <div className='tip'>
+            <p><span className='properties'>Name:</span> Earth</p>
+            <p><span className='properties'>Diameter:</span> 12,742 km</p>
+            <p><span className='properties'>From Moon:</span> 0.38 Mkm</p>
+          </div>
+        </div>
         <Arrow
           direction="left"
           onClick={this.showAnotherDay}
